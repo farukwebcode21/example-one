@@ -27,6 +27,10 @@ Route::get('/posts', function(){
     return view('posts');
 });
 
+// Route::get('/edit-post', function(){
+//     return view('edit-post');
+// });
+
 Route::get('/dashboard', function () {
     $posts = Post::all();
     return view('dashboard',[
@@ -43,6 +47,8 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/add-post', [PostController::class, 'add'])->name('add-post');
     Route::get('/posts', [PostController::class, 'index'])->name('posts');
+    Route::get('/edit-post/{$id}', [PostController::class, 'edit'])->name('edit-post');
+   
 });
 
 require __DIR__.'/auth.php';
