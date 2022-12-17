@@ -32,11 +32,16 @@
                             <ul>
                                 @foreach($posts as $post)
                                 <div class="my-3 py-2 px-2 border border-solid border-emerald-600">
-                                <li class="flex place-items-stretch">
-                                    <a class="mr-6" href="#">{{$post->title}}</a>
+                                <li class=" place-items-stretch">
+                                    <a class="text-lg font-bold mr-6" href="#">{{$post->title}}</a>
+                                    <p>{{$post->content}}</p>
                                     <span>
-                                        <a class="bg-green-500 px-6 py-1 text-white rounded " href="{{route('edit-post', $post->id)}}">Edit</a>
+                                        <a class="bg-green-500 px-6 py-1 text-white rounded " href="{{url('edit-post/'.$post->id)}}">Edit</a>
                                     </span>
+                                    <span>
+                                        <a class="bg-red-500 px-6 py-1 text-white rounded " href="{{url('delete-post/'.$post->id)}}">Delete</a>
+                                    </span>
+                
                                 </li>
                                 </div>
                                 @endforeach

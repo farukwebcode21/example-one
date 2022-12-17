@@ -16,6 +16,7 @@ use App\Models\Post;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,11 +44,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-// add a post 
+// Add POST
     
     Route::post('/add-post', [PostController::class, 'add'])->name('add-post');
+    Route::post('/update-post/{id}', [PostController::class, 'update'])->name('update-post');
+    
+
+    //ADD GET
     Route::get('/posts', [PostController::class, 'index'])->name('posts');
-    Route::get('/edit-post/{$id}', [PostController::class, 'edit'])->name('edit-post');
+    Route::get('/edit-post/{id}', [PostController::class, 'editPost'])->name('edit-post');
+    Route::get('/delete-post/{id}', [PostController::class, 'delete'])->name('delete-post');
+    
+    Route::get('/notification-test', function(){
+        $user =\Illuminate\Support\Facades\Auth::user();
+        dd($user->name);
+    });
    
 });
 
